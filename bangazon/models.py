@@ -6,6 +6,7 @@ class Customer(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     address = models.CharField(max_length=50)
     phone = models.IntegerField()
+    active = models.BooleanField(default=0)
     deletedOn = models.DateField(default=None, null=True)
 
 class ProductType(models.Model):
