@@ -11,3 +11,9 @@ from bangazon.models import Department
 from bangazon.models import Employee
 from bangazon.models import EmployeeTrainingProgram
 from bangazon.models import TrainingProgram
+
+class ComputerSerializer(serializers.HyperlinkedModelSerializer):
+    
+    class Meta:
+        model = Computer
+        fields = ('make', 'purchaseDate', 'decommissionDate', 'employees', 'deletedOn', 'url')
