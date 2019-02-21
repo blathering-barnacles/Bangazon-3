@@ -28,3 +28,9 @@ class CustomerSerializer(serializers.HyperlinkedModelSerializer):
     model = Customer
 
     fields = ('firstName', 'lastName', 'email', 'address', 'phone', 'deletedOn')
+class ComputerSerializer(serializers.HyperlinkedModelSerializer):
+    
+    class Meta:
+        model = Computer
+        # need to add back in 'employees' into the fields once i have access to the employee resource
+        fields = ('make', 'purchaseDate', 'decommissionDate', 'deletedOn', 'url')

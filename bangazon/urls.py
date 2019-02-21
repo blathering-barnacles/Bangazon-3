@@ -4,10 +4,10 @@ from rest_framework.routers import DefaultRouter
 from bangazon import views
 
 router = DefaultRouter()
-
-# single entry point
-router.register('Products', views.ProductViewSet)
+router.register('computers', views.ComputerViewSet,)
+router.register('products', views.ProductViewSet,)
+router.register('customer', views.CustomerViewSet,)
 
 urlpatterns = [
-  path('api/v1/', include(router.urls))
+    path('api/v1/', include(router.urls))
 ]
