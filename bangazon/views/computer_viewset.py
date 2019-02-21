@@ -18,7 +18,7 @@ def api_root(request, format=None):
 class ComputerViewSet(viewsets.ModelViewSet):
     """
     Summary:
-        This class creates the Computer Viewset for the browseable API
+        This viewset displays a list of the Computers found in the database. Click on the URL of a single computer to view the computer details  OR have the ability to delete the computer instance.
     Author: 
         Dillon Williams
 
