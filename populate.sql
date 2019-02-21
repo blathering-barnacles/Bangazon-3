@@ -29,7 +29,7 @@ INSERT INTO bangazon_product VALUES (null, "new nintendo 3ds", "dallas", "portab
 INSERT INTO bangazon_product VALUES (null, "panda earrings", "los angeles", "Stainless steel, beautiful earrings, handmande", 15, 5, "2019-01-15","", 4, 4);
 INSERT INTO bangazon_product VALUES (null, 'nintendo switch game console', 'Nashville', 'Minor tear and wear, official nintendo product', 200, 3, "2019-02-09","", 1, 2);
 INSERT INTO bangazon_product VALUES (null, 'roadmaster mountain bike', 'dallas', '26in Granite Peak Mens Mountain Bike', 98, 2, "2019-02-09", "", 2, 1);
-INSERT INTO bangazon_product VALUES (null, "new nintendo 3ds xl", "new york city", "portable gaming system", 129, 1, "2019-01-35","", 1, 2);
+INSERT INTO bangazon_product VALUES (null, "new nintendo 3ds xl", "new york city", "portable gaming system", 129, 1, "2019-01-30","", 1, 2);
 INSERT INTO bangazon_product VALUES (null, "attract round necklace", "louisville", "WHITE, RHODIUM PLATING", 69, 5, "2019-02-09","", 4, 1);
 INSERT INTO bangazon_product VALUES (null, 'cultured pearl bracelet', 'oklahoma city', 'Dark Purple Sterling Silver 7.5" Length', 39, 3, "2019-02-09","", 4, 2);
 INSERT INTO bangazon_product VALUES (null, 'nintendo 2ds', 'los angeles', 'minor wear and tear, some scratches on the edges', 59, 2, "2019-02-09", "", 2, 1);
