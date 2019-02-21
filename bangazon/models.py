@@ -61,7 +61,7 @@ class Computer(models.Model):
     '''
     make = models.CharField(max_length=20)
     purchaseDate = models.DateField()
-    decommissionDate = models.DateField()
+    decommissionDate = models.DateField(default=None, null=True)
     employees = models.ManyToManyField("Employee", through='ComputerEmployee')
     deletedOn = models.DateField(default=None, null=True)
 
