@@ -11,3 +11,4 @@ from bangazon.serializers import EmployeeSerializer
 class EmployeeViewSet(viewsets.ModelViewSet):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
+    http_method_names = ['get', 'post', 'put']
