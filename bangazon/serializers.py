@@ -23,7 +23,8 @@ class DepartmentSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Department
-        fields = ('id', 'url')
+        fields = ('id', 'url', 'name', 'budget', 'deletedOn')
+
 class ComputerSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:

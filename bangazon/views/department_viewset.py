@@ -11,4 +11,4 @@ from bangazon.serializers import DepartmentSerializer
 class DepartmentViewSet(viewsets.ModelViewSet):
     queryset = Department.objects.all()
     serializer_class = DepartmentSerializer
-    # http_method_names = ['get', 'post', 'put']
+    http_method_names = ['get', 'post', 'put']
