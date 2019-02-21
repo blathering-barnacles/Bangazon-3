@@ -6,6 +6,7 @@ from bangazon.models import ProductType
 from bangazon.serializers import ProductTypeSerializer
 from django.shortcuts import render
 from rest_framework import filters
+from rest_framework import status
 
 
 @api_view(['GET'])
@@ -20,4 +21,4 @@ class ProductTypeViewSet(viewsets.ModelViewSet):
     serializer_class = ProductTypeSerializer
 
     filter_backends = (filters.SearchFilter,)
-    search_fields = ('name', 'deletedOn')
+    search_fields = ('name', 'deletedOn', 'url')
