@@ -18,7 +18,7 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
   class Meta:
     model = Product
 
-    fields = ('title', 'location', 'description', 'price', 'quantity', 'dateAdded', 'deletedOn', 'productType_id', 'seller_id', 'customer' 'url')
+    fields = ('title', 'location', 'description', 'price', 'quantity', 'dateAdded', 'deletedOn', 'productType_id', 'seller_id', 'url')
 
 class CustomerSerializer(serializers.HyperlinkedModelSerializer):
 
@@ -26,7 +26,7 @@ class CustomerSerializer(serializers.HyperlinkedModelSerializer):
     model = Customer
 
     fields = ('firstName', 'lastName', 'email', 'address', 'phone', 'deletedOn', 'url')
-    
+
 class ProductTypeSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
