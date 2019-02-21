@@ -6,7 +6,7 @@ from bangazon import views
 router = DefaultRouter()
 router.register('computers', views.ComputerViewSet,)
 router.register('products', views.ProductViewSet,)
-router.register('customer', views.CustomerViewSet,)
+router.register('customers', views.CustomerViewSet,)
 
 urlpatterns = [
     path('api/v1/', include(router.urls))

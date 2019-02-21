@@ -5,7 +5,7 @@ from rest_framework.reverse import reverse
 
 from rest_framework import filters
 
-from bangazon.models import Product
+from bangazon.models import Customer
 from bangazon.serializers import ProductSerializer, CustomerSerializer 
 
 
@@ -15,7 +15,6 @@ def api_root(requst, format=None):
         'customers': reverse('customers', request=request, format=format)
     })
 
-
-  class DirectorViewSet(viewsets.ModelViewSet):
-    queryset = Cusotmer.objects.all()
-    serializer_class = CustomerSerializer
+class CustomerViewSet(viewsets.ModelViewSet):
+  queryset = Customer.objects.all()
+  serializer_class = CustomerSerializer

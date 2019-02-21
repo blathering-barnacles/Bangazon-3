@@ -15,12 +15,10 @@ from bangazon.models import TrainingProgram
 
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
   
-
   class Meta:
     model = Product
 
     fields = ('title', 'location', 'description', 'price', 'quantity', 'dateAdded', 'deletedOn', 'productType_id', 'seller_id', 'customer' 'url')
-
 
 class CustomerSerializer(serializers.HyperlinkedModelSerializer):
 
@@ -28,6 +26,7 @@ class CustomerSerializer(serializers.HyperlinkedModelSerializer):
     model = Customer
 
     fields = ('firstName', 'lastName', 'email', 'address', 'phone', 'deletedOn')
+
 class ComputerSerializer(serializers.HyperlinkedModelSerializer):
     
     class Meta:
