@@ -5,6 +5,7 @@ from bangazon import views
 
 router = DefaultRouter()
 router.register('computers', views.ComputerViewSet,)
+router.register('paymenttypes', views.PaymentTypeViewSet,)
 
 urlpatterns = [
     path('api/v1/', include(router.urls))

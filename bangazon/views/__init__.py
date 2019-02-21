@@ -1,1 +1,2 @@
 from .computer_viewset import ComputerViewSet
+from .paymenttype_viewset import PaymentTypeViewSet
