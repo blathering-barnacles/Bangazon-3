@@ -24,3 +24,9 @@ class DepartmentSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Department
         fields = ('id', 'url')
+class ComputerSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = Computer
+        # need to add back in 'employees' into the fields once i have access to the employee resource
+        fields = ('make', 'purchaseDate', 'decommissionDate', 'deletedOn', 'url')
