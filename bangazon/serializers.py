@@ -11,3 +11,10 @@ from bangazon.models import Department
 from bangazon.models import Employee
 from bangazon.models import EmployeeTrainingProgram
 from bangazon.models import TrainingProgram
+
+class ComputerSerializer(serializers.HyperlinkedModelSerializer):
+    
+    class Meta:
+        model = Computer
+        # need to add back in 'employees' into the fields once i have access to the employee resource
+        fields = ('make', 'purchaseDate', 'decommissionDate', 'deletedOn', 'url')
