@@ -57,3 +57,5 @@ Pipfile*
 migrations
 db.sqlite3-journal
 sqlite3.sql
+*.pyc
+__pycache__

@@ -13,8 +13,20 @@ from bangazon.models import EmployeeTrainingProgram
 from bangazon.models import TrainingProgram
 
 
+class EmployeeSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = Employee
+        fields = ('id', 'firstName', 'lastName', 'startDate', 'isSupervisor', 'deletedOn', 'url')
+
+class DepartmentSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = Department
+        fields = ('id', 'url', 'name', 'budget', 'deletedOn')
+
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
-  
+
   class Meta:
     model = Product
 
