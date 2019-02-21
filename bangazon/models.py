@@ -1,13 +1,17 @@
-from django.contrib.auth.models import User
 from django.db import models
-
+from phonenumber_field.modelfields import PhoneNumberField
 # Create your models here.
 class Customer(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    firstName = models.CharField(max_length=20)
+    lastName = models.CharField(max_length=30)
+    email = models.CharField(max_length=50)
     address = models.CharField(max_length=50)
-    phone = models.IntegerField()
+    phone = PhoneNumberField(null=False, blank=False, unique=True)
     deletedOn = models.DateField(default=None, null=True)
 
+    def __str__(self):
+        return self.firstName, self.lastName
+        
 class ProductType(models.Model):
     name = models.CharField(max_length=255)
     deletedOn = models.DateField(default=None, null=True)
@@ -35,6 +39,7 @@ class PaymentType(models.Model):
 class Order(models.Model):
     buyer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     paymentType = models.ForeignKey(PaymentType, null=True, on_delete=models.CASCADE)
+    product = models.ManyToManyField(Product, blank=True, through='ProductOrder')
     deletedOn = models.DateField(default=None, null=True)
 
 class ProductOrder(models.Model):
@@ -58,6 +63,8 @@ class Computer(models.Model):
     purchaseDate = models.DateField()
     decommissionDate = models.DateField()
     employees = models.ManyToManyField("Employee", through='ComputerEmployee')
+    deletedOn = models.DateField(default=None, null=True)
+
 
     def __str__(self):
         ''' purpose: This method just returns the make. arguments: self '''
@@ -72,6 +79,8 @@ class ComputerEmployee(models.Model):
 
     employee = models.ForeignKey("Employee", on_delete=models.CASCADE)
     computer = models.ForeignKey("Computer", on_delete=models.CASCADE)
+    deletedOn = models.DateField(default=None, null=True)
+
 
 class Department(models.Model):
     """
@@ -89,6 +98,8 @@ class Department(models.Model):
 
     name = models.CharField(max_length=100)
     budget = models.IntegerField()
+    deletedOn = models.DateField(default=None, null=True)
+
 
     """
 
@@ -121,6 +132,8 @@ class Employee(models.Model):
     lastName = models.CharField(max_length=100)
     startDate = models.DateField()
     isSupervisor = models.BooleanField()
+    deletedOn = models.DateField(default=None, null=True)
+
 
     def __str__(self):
         """
@@ -142,6 +155,8 @@ class EmployeeTrainingProgram(models.Model):
     # _safedelete_policy = HARD_DELETE_NOCASCADE
     employee = models.ForeignKey("Employee", on_delete=models.CASCADE)
     trainingProgram = models.ForeignKey("TrainingProgram", on_delete=models.CASCADE)
+    deletedOn = models.DateField(default=None, null=True)
+
 
 
 class TrainingProgram(models.Model):
@@ -157,6 +172,8 @@ class TrainingProgram(models.Model):
     endDate = models.DateField()
     maxAttendees = models.IntegerField()
     employee = models.ManyToManyField("Employee", through='EmployeeTrainingProgram')
+    deletedOn = models.DateField(default=None, null=True)
+
 
     def __str__(self):
         ''' returns a string representation of the model '''
