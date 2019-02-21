@@ -16,4 +16,5 @@ class ComputerSerializer(serializers.HyperlinkedModelSerializer):
     
     class Meta:
         model = Computer
-        fields = ('make', 'purchaseDate', 'decommissionDate', 'employees', 'deletedOn', 'url')
+        # need to add back in 'employees' into the fields once i have access to the employee resource
+        fields = ('make', 'purchaseDate', 'decommissionDate', 'deletedOn', 'url')
