@@ -25,7 +25,7 @@ class CustomerSerializer(serializers.HyperlinkedModelSerializer):
   class Meta:
     model = Customer
 
-    fields = ('firstName', 'lastName', 'email', 'address', 'phone', 'deletedOn')
+    fields = ('firstName', 'lastName', 'email', 'address', 'phone', 'deletedOn', 'url')
 
 class ComputerSerializer(serializers.HyperlinkedModelSerializer):
     
