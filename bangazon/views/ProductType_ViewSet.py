@@ -21,4 +21,4 @@ class ProductTypeViewSet(viewsets.ModelViewSet):
     serializer_class = ProductTypeSerializer
 
     filter_backends = (filters.SearchFilter,)
-    search_fields = ('name', 'deletedOn', 'url')
+    search_fields = ('name', 'deletedOn')

@@ -17,7 +17,7 @@ class ProductTypeSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = ProductType
-        fields = ('id', 'name', 'deletedOn')
+        fields = ('id', 'name', 'deletedOn', 'url')
 
 class ComputerSerializer(serializers.HyperlinkedModelSerializer):
 
