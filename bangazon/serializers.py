@@ -11,3 +11,11 @@ from bangazon.models import Department
 from bangazon.models import Employee
 from bangazon.models import EmployeeTrainingProgram
 from bangazon.models import TrainingProgram
+
+
+class ProductSerializer(serializers.HyperlinkedModelSerializer):
+
+  class Meta:
+    model = Product
+
+    fields = ('title', 'location', 'description', 'price', 'quantity')
