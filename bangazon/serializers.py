@@ -51,3 +51,9 @@ class ComputerSerializer(serializers.HyperlinkedModelSerializer):
         model = Computer
         # need to add back in 'employees' into the fields once i have access to the employee resource
         fields = ('make', 'purchaseDate', 'decommissionDate', 'deletedOn', 'url')
+
+class TrainingProgramSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = TrainingProgram
+        fields = ('id', 'name', 'startDate', 'endDate', 'maxAttendees', 'deletedOn', 'employee', 'url')
