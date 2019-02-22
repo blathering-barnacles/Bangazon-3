@@ -17,7 +17,7 @@ class EmployeeSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Employee
-        fields = ('id', 'firstName', 'lastName', 'startDate', 'isSupervisor', 'deletedOn', 'url')
+        fields = ('id', 'firstName', 'lastName', 'startDate', 'isSupervisor', 'deletedOn', 'department', 'url')
 
 class DepartmentSerializer(serializers.HyperlinkedModelSerializer):
 
@@ -56,3 +56,8 @@ class PaymentTypeSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = PaymentType
         fields = '__all__'
+
+class ComputerEmployeeSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = ComputerEmployee
+        fields = ('id', 'deletedOn', 'computer_id', 'employee_id', 'url')

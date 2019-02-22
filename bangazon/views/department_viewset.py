@@ -8,6 +8,12 @@ from rest_framework import filters
 from bangazon.models import Department
 from bangazon.serializers import DepartmentSerializer
 
+@api_view(['GET'])
+def api_root(requst, format=None):
+  return Response({
+        'departments': reverse('departments', request=request, format=format)
+    })
+
 class DepartmentViewSet(viewsets.ModelViewSet):
     queryset = Department.objects.all()
     serializer_class = DepartmentSerializer
