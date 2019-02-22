@@ -57,3 +57,8 @@ class TrainingProgramSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = TrainingProgram
         fields = ('id', 'name', 'startDate', 'endDate', 'maxAttendees', 'deletedOn', 'employee', 'url')
+
+class PaymentTypeSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = PaymentType
+        fields = '__all__'
