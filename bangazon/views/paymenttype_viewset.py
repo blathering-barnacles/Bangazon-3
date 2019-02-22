@@ -16,10 +16,11 @@ def api_root(request, format=None):
 class PaymentTypeViewSet(viewsets.ModelViewSet):
     """
     Summary:
-        This viewset displays a list of the Payment Types found in the database. Click on the URL of a single Payment Type to view the details  OR have the ability to delete a single instance.
+        This viewset displays a list of the Payment Types found in the database. Click on the URL of a single Payment Type to view the details or have the ability to delete a single instance.
     Author:
         Richard Lancaster
 
     """
     queryset = PaymentType.objects.all()
     serializer_class = PaymentTypeSerializer
+    http_method_names = ['get', 'post', 'put', 'delete']

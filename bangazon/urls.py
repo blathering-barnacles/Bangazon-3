@@ -8,7 +8,7 @@ router.register('employees', views.EmployeeViewSet)
 router.register('departments', views.DepartmentViewSet)
 router.register('productTypes', views.ProductTypeViewSet)
 router.register('computers', views.ComputerViewSet,)
-router.register('paymenttypes', views.PaymentTypeViewSet,)
+router.register('paymenttypes', views.PaymentTypeViewSet)
 router.register('products', views.ProductViewSet,)
 router.register('customers', views.CustomerViewSet,)
 
