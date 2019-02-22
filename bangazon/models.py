@@ -50,10 +50,6 @@ class ProductOrder(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     deletedOn = models.DateField(default=None, null=True)
 
-    def __str__(self):
-        return f'{self.order}'
-
-
 class Computer(models.Model):
     '''
     description: This class creates a computer and its properties.

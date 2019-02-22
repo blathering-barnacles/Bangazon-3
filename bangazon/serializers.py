@@ -59,7 +59,8 @@ class PaymentTypeSerializer(serializers.HyperlinkedModelSerializer):
         fields = '__all__'
 
 class ProductOrderSerializer(serializers.HyperlinkedModelSerializer):
+    product = ProductSerializer(read_only=True)
 
     class Meta:
         model = ProductOrder
-        fields = '__all__'
+        fields = ('order_id', 'product', 'deletedOn')
