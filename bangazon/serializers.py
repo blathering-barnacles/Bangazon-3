@@ -53,6 +53,13 @@ class ComputerSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('make', 'purchaseDate', 'decommissionDate', 'deletedOn', 'url')
 
 class PaymentTypeSerializer(serializers.HyperlinkedModelSerializer):
+
     class Meta:
         model = PaymentType
+        fields = '__all__'
+
+class ProductOrderSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = ProductOrder
         fields = '__all__'

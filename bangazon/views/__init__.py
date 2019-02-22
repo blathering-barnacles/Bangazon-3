@@ -8,4 +8,5 @@ from .computer_viewset import ComputerViewSet
 from .employee_viewset import EmployeeViewSet
 from .department_viewset import DepartmentViewSet
 from .paymenttype_viewset import PaymentTypeViewSet
+from .productorder_viewset import ProductOrderViewSet
 
