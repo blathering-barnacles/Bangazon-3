@@ -32,7 +32,7 @@ class TrainingProgramViewSet(viewsets.ModelViewSet):
         if keyword == "false":
             query_set = query_set.filter(startDate__gte=today)
         elif keyword == "true":
-            query_set = query_set.filter(startDate__lte=today)
+            query_set = query_set.filter(endDate__lte=today)
         elif keyword is not None:
             query_set = query_set.filter(startDate__gte=today)
 
