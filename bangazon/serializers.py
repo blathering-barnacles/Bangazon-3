@@ -53,10 +53,13 @@ class ComputerSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('make', 'purchaseDate', 'decommissionDate', 'deletedOn', 'url')
 
 class TrainingProgramSerializer(serializers.HyperlinkedModelSerializer):
+    # first_name = serializers.ReadOnlyField(source='employee.firstName')
+    attendees = EmployeeSerializer(many=True, source='employee.all', read_only=True)
+
 
     class Meta:
         model = TrainingProgram
-        fields = ('id', 'name', 'startDate', 'endDate', 'maxAttendees', 'deletedOn', 'employee', 'url')
+        fields = ('id', 'name', 'startDate', 'endDate', 'maxAttendees', 'deletedOn', 'url', 'attendees' )
 
 class PaymentTypeSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

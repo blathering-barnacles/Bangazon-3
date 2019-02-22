@@ -20,6 +20,7 @@ class TrainingProgramViewSet(viewsets.ModelViewSet):
 
     filter_backends = (filters.SearchFilter, )
     search_fields = ('id', 'name', 'startDate', 'endDate', 'maxAttendees', 'deletedOn', 'url')
+    # search_fields = ('id', 'firstName', 'lastName')
 
     def get_queryset(self):
         print("TIME: ", str(datetime.datetime.now())[0:10])
