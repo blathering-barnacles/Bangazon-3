@@ -51,3 +51,8 @@ class ComputerSerializer(serializers.HyperlinkedModelSerializer):
         model = Computer
         # need to add back in 'employees' into the fields once i have access to the employee resource
         fields = ('make', 'purchaseDate', 'decommissionDate', 'deletedOn', 'url')
+
+class PaymentTypeSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = PaymentType
+        fields = '__all__'
