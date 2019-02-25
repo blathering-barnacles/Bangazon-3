@@ -12,18 +12,36 @@ from bangazon.models import Employee
 from bangazon.models import EmployeeTrainingProgram
 from bangazon.models import TrainingProgram
 
-
-class EmployeeSerializer(serializers.HyperlinkedModelSerializer):
-
-    class Meta:
-        model = Employee
-        fields = ('id', 'firstName', 'lastName', 'startDate', 'isSupervisor', 'deletedOn', 'department', 'url')
-
 class DepartmentSerializer(serializers.HyperlinkedModelSerializer):
-
+    employees = Employee.objects.all()
     class Meta:
         model = Department
         fields = ('id', 'url', 'name', 'budget', 'deletedOn')
+
+class ComputerEmployeeSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = ComputerEmployee
+        fields = ('id', 'deletedOn', 'computer_id', 'employee_id', 'url')
+
+class EmployeeSerializer(serializers.HyperlinkedModelSerializer):
+
+    # department = DepartmentSerializer(
+    #     read_only=True
+    #  )
+
+    class Meta:
+        model = Employee
+        fields = ('__all__')
+
+class ComputerSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = Computer
+        # need to add back in 'employees' into the fields once i have access to the employee resource
+        fields = ('make', 'purchaseDate', 'decommissionDate', 'deletedOn', 'url', 'employees')
+
+
+
 
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
 
@@ -45,19 +63,10 @@ class ProductTypeSerializer(serializers.HyperlinkedModelSerializer):
         model = ProductType
         fields = ('id', 'name', 'deletedOn', 'url')
 
-class ComputerSerializer(serializers.HyperlinkedModelSerializer):
-
-    class Meta:
-        model = Computer
-        # need to add back in 'employees' into the fields once i have access to the employee resource
-        fields = ('make', 'purchaseDate', 'decommissionDate', 'deletedOn', 'url')
 
 class PaymentTypeSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = PaymentType
         fields = '__all__'
 
-class ComputerEmployeeSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = ComputerEmployee
-        fields = ('id', 'deletedOn', 'computer_id', 'employee_id', 'url')
+

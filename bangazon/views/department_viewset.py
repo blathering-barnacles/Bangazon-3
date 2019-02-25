@@ -18,3 +18,15 @@ class DepartmentViewSet(viewsets.ModelViewSet):
     queryset = Department.objects.all()
     serializer_class = DepartmentSerializer
     http_method_names = ['get', 'post', 'put']
+
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('budget')
+
+    
+
+# class IsOwnerFilterBackend(filters.BaseFilterBackend):
+#     """
+#     Filter that only allows users to see their own objects.
+#     """
+#     def filter_queryset(self, request, queryset, view):
+#         return queryset.filter(owner=request.user)
