@@ -49,7 +49,7 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
   class Meta:
     model = Product
 
-    fields = ('title', 'location', 'description', 'price', 'quantity', 'dateAdded', 'deletedOn', 'productType_id', 'seller_id', 'url')
+    fields = ('title', 'location', 'description', 'price', 'quantity', 'dateAdded', 'deletedOn', 'productType', 'seller', 'url')
 
 class CustomerSerializer(serializers.HyperlinkedModelSerializer):
 
@@ -64,6 +64,15 @@ class ProductTypeSerializer(serializers.HyperlinkedModelSerializer):
         model = ProductType
         fields = ('id', 'name', 'deletedOn', 'url')
 
+
+class TrainingProgramSerializer(serializers.HyperlinkedModelSerializer):
+    # first_name = serializers.ReadOnlyField(source='employee.firstName')
+    attendees = EmployeeSerializer(many=True, source='employee.all', read_only=True)
+
+
+    class Meta:
+        model = TrainingProgram
+        fields = ('id', 'name', 'startDate', 'endDate', 'maxAttendees', 'deletedOn', 'url', 'attendees' )
 
 class PaymentTypeSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
