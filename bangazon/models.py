@@ -10,7 +10,7 @@ class Customer(models.Model):
     deletedOn = models.DateField(default=None, null=True)
 
     def __str__(self):
-        return f'{self.firstName}, {self.lastName}'
+        return f'{self.lastName}, {self.firstName}'
 
 class ProductType(models.Model):
     name = models.CharField(max_length=255)
@@ -35,6 +35,9 @@ class PaymentType(models.Model):
     cardNum = models.IntegerField()
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     deletedOn = models.DateField(default=None, null=True)
+
+    def __str__(self):
+        return self.title
 
 class Order(models.Model):
     buyer = models.ForeignKey(Customer, on_delete=models.CASCADE)
