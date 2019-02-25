@@ -28,40 +28,26 @@ class CustomerViewSet(viewsets.ModelViewSet):
 
         keyword = self.request.query_params.get('active', None)
         customer_query_set = Customer.objects.all()
-        print("CUSTOMER QUERY: ", customer_query_set)
+        print("CUSTOMER QUERY: ", customer_query_set.values('id'))
         order_query_set = Order.objects.all()
-        # print("ORDER QUERY: ", order_query_set)
-        # activeCustomers = []
+        # customerList = []
 
 
         if keyword is not None:
             customerList = []
-            # woop = (customerList)
 
-            # activeCustomers = []
 
             for order in order_query_set:
-                # print("order buyer id: ", order.buyer_id)
                 buyer_id = order.buyer_id
-                customer = customer_query_set.filter(pk=buyer_id)
-                # print("CUSTOMER: ", customer)
-                customerList.append((customer))
+                print("BUYER ID: ", buyer_id)
+                # customer = customer_query_set.filter(id=buyer_id)
+                customer = Customer.objects.get(id=buyer_id)
+                customerList.append(customer)
 
 
 
-                # customerList = { 'customers': customer}
-                # print(customerList)
-                # activeCustomers.append(customerList)
-
-            # for person in customerList:
-                # print(customerList)
-                # print("person: ", person)
-                # for name in person:
-                    # print(name)
-            # print("CONTEXT: ", context)
             print("CUSTOMER LIST: ", customerList)
-            # print("woop", woop)
-            return customer
+            return customerList
 
 
         return customer_query_set
@@ -91,4 +77,3 @@ class CustomerViewSet(viewsets.ModelViewSet):
     #         query_set = query_set.filter(startDate__gte=today)
 
     #     return query_set
-
