@@ -13,17 +13,22 @@ from bangazon.models import EmployeeTrainingProgram
 from bangazon.models import TrainingProgram
 
 
-class EmployeeSerializer(serializers.HyperlinkedModelSerializer):
-
-    class Meta:
-        model = Employee
-        fields = ('id', 'firstName', 'lastName', 'startDate', 'isSupervisor', 'deletedOn', 'url')
 
 class DepartmentSerializer(serializers.HyperlinkedModelSerializer):
+
+    # assignees = EmployeeSerializer(many=True, source='employee.all', read_only=True)
 
     class Meta:
         model = Department
         fields = ('id', 'url', 'name', 'budget', 'deletedOn')
+
+class EmployeeSerializer(serializers.HyperlinkedModelSerializer):
+
+    departments = DepartmentSerializer(many=True, source='department.all', read_only=True)
+
+    class Meta:
+        model = Employee
+        fields = ('id', 'firstName', 'lastName', 'startDate', 'isSupervisor', 'deletedOn', 'url', 'departments')
 
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
 
@@ -60,6 +65,7 @@ class PaymentTypeSerializer(serializers.HyperlinkedModelSerializer):
 
 class ProductOrderSerializer(serializers.HyperlinkedModelSerializer):
     product = ProductSerializer(read_only=True)
+
 
     class Meta:
         model = ProductOrder
