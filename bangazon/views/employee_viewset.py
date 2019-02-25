@@ -5,7 +5,7 @@ from rest_framework.reverse import reverse
 
 from rest_framework import filters
 
-from bangazon.models import Employee
+from bangazon.models import Employee, Department
 from bangazon.serializers import EmployeeSerializer
 
 @api_view(['GET'])

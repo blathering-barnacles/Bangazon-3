@@ -23,11 +23,12 @@ class ComputerEmployeeSerializer(serializers.HyperlinkedModelSerializer):
         model = ComputerEmployee
         fields = ('id', 'deletedOn', 'computer_id', 'employee_id', 'url')
 
-class EmployeeSerializer(serializers.HyperlinkedModelSerializer):
+class EmployeeDepartmentSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Department
+        exclude = ('budget', 'deletedOn')
 
-    # department = DepartmentSerializer(
-    #     read_only=True
-    #  )
+class EmployeeSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Employee
