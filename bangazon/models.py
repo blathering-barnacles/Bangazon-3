@@ -37,7 +37,7 @@ class PaymentType(models.Model):
     deletedOn = models.DateField(default=None, null=True)
 
     def __str__(self):
-        return self.title
+        return f'{self.name}'
 
 class Order(models.Model):
     buyer = models.ForeignKey(Customer, on_delete=models.CASCADE)
