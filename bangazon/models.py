@@ -10,7 +10,7 @@ class Customer(models.Model):
     deletedOn = models.DateField(default=None, null=True)
 
     def __str__(self):
-        return self.firstName, self.lastName
+        return f'{self.firstName}, {self.lastName}'
 
 class ProductType(models.Model):
     name = models.CharField(max_length=255)
