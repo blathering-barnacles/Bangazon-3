@@ -19,20 +19,11 @@ class DepartmentSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id', 'url', 'name', 'budget', 'deletedOn')
 
 class ComputerEmployeeSerializer(serializers.HyperlinkedModelSerializer):
+
     class Meta:
         model = ComputerEmployee
-        fields = ('id', 'deletedOn', 'computer_id', 'employee_id', 'url')
-
-class EmployeeDepartmentSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Department
-        exclude = ('budget', 'deletedOn')
-
-class EmployeeSerializer(serializers.HyperlinkedModelSerializer):
-
-    class Meta:
-        model = Employee
         fields = ('__all__')
+
 
 class ComputerSerializer(serializers.HyperlinkedModelSerializer):
 
@@ -41,8 +32,12 @@ class ComputerSerializer(serializers.HyperlinkedModelSerializer):
         # need to add back in 'employees' into the fields once i have access to the employee resource
         fields = ('make', 'purchaseDate', 'decommissionDate', 'deletedOn', 'url', 'employees')
 
+class EmployeeSerializer(serializers.HyperlinkedModelSerializer):
+    computer = ComputerSerializer(many=True, read_only=True)
 
-
+    class Meta:
+        model = Employee
+        fields = ('id', 'firstName', 'lastName', 'url', 'department', 'computer')
 
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
 
