@@ -23,15 +23,9 @@ class CustomerViewSet(viewsets.ModelViewSet):
 
 
   def get_queryset(self):
-    query_set = self.queryset
-
-    # search all parameters of each customer based on the params provided
-    keyword = self.request.query_params.get('q')
+    query_set = Customer.objects.all()
+    keyword = self.request.query_params.get('search', None)
     if keyword is not None:
-        query_set = query_set.filter(Q(firstName__icontains=keyword) | Q(lastName__icontains=keyword))
-
-    keyword = self.request.query_params.get('active')
-    if keyword == 'false' or keyword == 'False':
-        query_set = [cust for cust in query_set if cust.has_placed_order == False]
-
+      print("query params", keyword)
+      query_set = query_set.filter(title__icontains=keyword)
     return query_set
