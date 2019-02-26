@@ -41,7 +41,7 @@ class PaymentType(models.Model):
     deletedOn = models.DateField(default=None, null=True)
 
     def __str__(self):
-        return self.title
+        return f'{self.name}'
 
 class Order(models.Model):
     buyer = models.ForeignKey(Customer, on_delete=models.CASCADE)
@@ -53,7 +53,6 @@ class ProductOrder(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     deletedOn = models.DateField(default=None, null=True)
-
 
 class Computer(models.Model):
     '''
@@ -137,7 +136,7 @@ class Employee(models.Model):
 
     """
 
-    department = models.ForeignKey("Department", on_delete=models.CASCADE)
+    department = models.ForeignKey("Department", on_delete=models.CASCADE, related_name='employees')
     firstName = models.CharField(max_length=100)
     lastName = models.CharField(max_length=100)
     startDate = models.DateField()

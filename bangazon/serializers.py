@@ -18,12 +18,29 @@ class DepartmentSerializer(serializers.HyperlinkedModelSerializer):
         model = Department
         fields = ('id', 'url', 'name', 'budget', 'deletedOn')
 
-class ComputerEmployeeSerializer(serializers.HyperlinkedModelSerializer):
 
+class DepartmentSerializer(serializers.HyperlinkedModelSerializer):
+    def __init__(self, *args, **kwargs):
+        super(DepartmentSerializer, self).__init__(*args, **kwargs)
+        print("ARGS: ", args)
+        print("KWARGS", kwargs)
+        request = kwargs['context']['request']
+        print("REQUEST: ", request.query_params)
+        include = request.query_params.get('_include')
+        print("INCLUDE: ", include)
+
+        if include:
+            if 'employees' in include:
+                self.fields['employees'] = EmployeeSerializer(many=True, source='employees.all', read_only=True)
+
+    class Meta:
+        model = Department
+        fields = ('url', 'name', 'budget')
+
+class ComputerEmployeeSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = ComputerEmployee
         fields = ('__all__')
-
 
 class ComputerSerializer(serializers.HyperlinkedModelSerializer):
 
@@ -38,6 +55,12 @@ class EmployeeSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Employee
         fields = ('id', 'firstName', 'lastName', 'url', 'department', 'computer')
+
+class EmployeeSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = Employee
+        fields = ('id', 'firstName', 'lastName', 'startDate', 'isSupervisor', 'deletedOn', 'url')
 
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
 
@@ -81,8 +104,16 @@ class TrainingProgramSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id', 'name', 'startDate', 'endDate', 'maxAttendees', 'deletedOn', 'url', 'attendees' )
 
 class PaymentTypeSerializer(serializers.HyperlinkedModelSerializer):
+
     class Meta:
         model = PaymentType
         fields = '__all__'
 
+class ProductOrderSerializer(serializers.HyperlinkedModelSerializer):
+    product = ProductSerializer(read_only=True)
+
+
+    class Meta:
+        model = ProductOrder
+        fields = ('order_id', 'product', 'deletedOn')
 
