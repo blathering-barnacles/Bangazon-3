@@ -13,6 +13,9 @@ class Customer(models.Model):
     def __str__(self):
         return f'{self.lastName}, {self.firstName}'
 
+    class Meta:
+      ordering = ('lastName',)
+
 class ProductType(models.Model):
     name = models.CharField(max_length=255)
     deletedOn = models.DateField(default=None, null=True)
@@ -21,7 +24,7 @@ class ProductType(models.Model):
       return f'{self.name}'
 
 class Product(models.Model):
-    seller = models.ForeignKey(Customer,on_delete=models.CASCADE, null=True)
+    seller = models.ForeignKey(Customer,on_delete=models.CASCADE, null=True, related_name='product')
     title = models.CharField(max_length=255)
     location = models.CharField(max_length=30)
     description = models.TextField(blank=True, null=True)
