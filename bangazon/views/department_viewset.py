@@ -10,6 +10,12 @@ from bangazon.models import Employee
 from bangazon.serializers import DepartmentSerializer
 # from bangazon.serializers import EmployeeSerializer
 
+@api_view(['GET'])
+def api_root(requst, format=None):
+  return Response({
+        'departments': reverse('departments', request=request, format=format)
+    })
+
 class DepartmentViewSet(viewsets.ModelViewSet):
     queryset = Department.objects.all()
     serializer_class = DepartmentSerializer
@@ -36,3 +42,14 @@ class DepartmentViewSet(viewsets.ModelViewSet):
     #     elif keyword == 'false':
     #         query_set =query_set.exclude(paymentType_id__isnull=False)
     #     return query_set
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('budget')
+
+
+
+# class IsOwnerFilterBackend(filters.BaseFilterBackend):
+#     """
+#     Filter that only allows users to see their own objects.
+#     """
+#     def filter_queryset(self, request, queryset, view):
+#         return queryset.filter(owner=request.user)

@@ -10,4 +10,5 @@ from .department_viewset import DepartmentViewSet
 from .TrainingProgram_ViewSet import TrainingProgramViewSet
 from .paymenttype_viewset import PaymentTypeViewSet
 from .productorder_viewset import ProductOrderViewSet
+from .computerEmployee_viewset import ComputerEmployeeViewSet
 

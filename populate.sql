@@ -1,13 +1,13 @@
-INSERT INTO bangazon_customer VALUES (null, 'Richard', 'Lancaster', 'test@bangazon.com', '111 in da SKREETZ', '1111111111', NULL);
-INSERT INTO bangazon_customer VALUES (null, 'Alfonso', 'Miranda', 'test@bangazon.com', '222 in da SKREETZ', '1111111110', NULL);
-INSERT INTO bangazon_customer VALUES (null, 'Jessica', 'Barnett', 'test@bangazon.com', '333 in da SKREETZ', '1111111112', NULL);
-INSERT INTO bangazon_customer VALUES (null, 'Dillon', 'Williams', 'test@bangazon.com', '444 in da SKREETZ', '1111111113', NULL);
-INSERT INTO bangazon_customer VALUES (null, 'Andy', 'Herring', 'test@bangazon.com', '555 in da SKREETZ', '1111111114', NULL);
-INSERT INTO bangazon_customer VALUES (null, 'Charlie', 'Staton', 'test@bangazon.com', '666 in da SKREETZ', '1111111115', NULL);
-INSERT INTO bangazon_customer VALUES (null, 'Mark', 'Voydanoff', 'test@bangazon.com', '777 in da SKREETZ', '1111111116', NULL);
-INSERT INTO bangazon_customer VALUES (null, 'Kevin', 'Martelli', 'test@bangazon.com', '888 in da SKREETZ', '1111111117', NULL);
-INSERT INTO bangazon_customer VALUES (null, 'Jamie', 'Day', 'test@bangazon.com', '999 in da SKREETZ', '1111111118', NULL);
-INSERT INTO bangazon_customer VALUES (null, 'Kristin', 'McKinney', 'test@bangazon.com', '000 in da SKREETZ', '1111111119', NULL);
+INSERT INTO bangazon_customer VALUES (null, 'Richard', 'Lancaster', 'test@bangazon.com', '111 in da SKREETZ', '1111111111', 1, NULL);
+INSERT INTO bangazon_customer VALUES (null, 'Alfonso', 'Miranda', 'test@bangazon.com', '222 in da SKREETZ', '1111111110', 1, NULL);
+INSERT INTO bangazon_customer VALUES (null, 'Jessica', 'Barnett', 'test@bangazon.com', '333 in da SKREETZ', '1111111112', 1, NULL);
+INSERT INTO bangazon_customer VALUES (null, 'Dillon', 'Williams', 'test@bangazon.com', '444 in da SKREETZ', '1111111113', 1, NULL);
+INSERT INTO bangazon_customer VALUES (null, 'Andy', 'Herring', 'test@bangazon.com', '555 in da SKREETZ', '1111111114', 1, NULL);
+INSERT INTO bangazon_customer VALUES (null, 'Charlie', 'Staton', 'test@bangazon.com', '666 in da SKREETZ', '1111111115', 1, NULL);
+INSERT INTO bangazon_customer VALUES (null, 'Mark', 'Voydanoff', 'test@bangazon.com', '777 in da SKREETZ', '1111111116', 1, NULL);
+INSERT INTO bangazon_customer VALUES (null, 'Kevin', 'Martelli', 'test@bangazon.com', '888 in da SKREETZ', '1111111117', 1, NULL);
+INSERT INTO bangazon_customer VALUES (null, 'Jamie', 'Day', 'test@bangazon.com', '999 in da SKREETZ', '1111111118', 0, NULL);
+INSERT INTO bangazon_customer VALUES (null, 'Kristin', 'McKinney', 'test@bangazon.com', '000 in da SKREETZ', '1111111119', 0, NULL);
 
 INSERT INTO bangazon_productType VALUES (null, 'Electronics', "");
 INSERT INTO bangazon_productType VALUES (null, 'Sports', "");

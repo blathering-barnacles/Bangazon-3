@@ -12,6 +12,7 @@ router.register('paymenttypes', views.PaymentTypeViewSet)
 router.register('products', views.ProductViewSet,)
 router.register('customers', views.CustomerViewSet,)
 router.register('productorders', views.ProductOrderViewSet,)
+router.register('computersEmployees', views.ComputerEmployeeViewSet,)
 router.register('trainingPrograms', views.TrainingProgramViewSet,)
 
 
