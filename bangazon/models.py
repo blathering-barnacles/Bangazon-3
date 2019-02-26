@@ -69,7 +69,7 @@ class Computer(models.Model):
     make = models.CharField(max_length=20)
     purchaseDate = models.DateField()
     decommissionDate = models.DateField(default=None, null=True)
-    employees = models.ManyToManyField("Employee", through='ComputerEmployee')
+    employees = models.ManyToManyField("Employee", through='ComputerEmployee', related_name='computer')
     deletedOn = models.DateField(default=None, null=True)
 
 
@@ -87,6 +87,9 @@ class ComputerEmployee(models.Model):
     employee = models.ForeignKey("Employee", on_delete=models.CASCADE)
     computer = models.ForeignKey("Computer", on_delete=models.CASCADE)
     deletedOn = models.DateField(default=None, null=True)
+
+    def __str__(self):
+        return f'{self.employee}, {self.computer}'
 
 
 class Department(models.Model):
@@ -152,6 +155,7 @@ class Employee(models.Model):
 
         """
         return self.firstName, self.lastName
+
 
 class EmployeeTrainingProgram(models.Model):
     """
