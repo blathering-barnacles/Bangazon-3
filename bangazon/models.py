@@ -54,7 +54,6 @@ class ProductOrder(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     deletedOn = models.DateField(default=None, null=True)
 
-
 class Computer(models.Model):
     '''
     description: This class creates a computer and its properties.
@@ -137,7 +136,7 @@ class Employee(models.Model):
 
     """
 
-    department = models.ForeignKey("Department", on_delete=models.CASCADE)
+    department = models.ForeignKey("Department", on_delete=models.CASCADE, related_name='employees')
     firstName = models.CharField(max_length=100)
     lastName = models.CharField(max_length=100)
     startDate = models.DateField()
