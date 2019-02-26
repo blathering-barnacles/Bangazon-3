@@ -21,35 +21,19 @@ class DepartmentViewSet(viewsets.ModelViewSet):
     serializer_class = DepartmentSerializer
     http_method_names = ['get', 'post', 'put']
 
-    # filter_backends = (filters.SearchFilter,)
-    # search_fields = ('name', 'deletedOn')
+    filter_backends = (filters.SearchFilter, )
+    search_fields = ('department_name', 'budget')
 
-    # def get_queryset(self):
-    #     query_set = Employee.objects.all()
-    #     departments = Department.objects.all()
-    #     keyword1 = self.request.query_params.get('_include', None)
-    #     # if keyword1 == 'employees':
-    #     keyword2 = self.request.query_params.get('_filter', None)
-    #     if keyword2 == 'budget':
-    #         query_set = Department.objects.filter(budget__gte=300000)
-    #     return queryset
+    def get_queryset(self):
+        query_set = Department.objects.all()
 
-    # def get_queryset(self):
-    #     query_set = Order.objects.all()
-    #     keyword = self.request.query_params.get('completed', None)
-    #     if keyword == 'true':
-    #         query_set = query_set.exclude(paymentType_id__isnull=True)
-    #     elif keyword == 'false':
-    #         query_set =query_set.exclude(paymentType_id__isnull=False)
-    #     return query_set
-    filter_backends = (filters.SearchFilter,)
-    search_fields = ('budget')
+        keyword = self.request.query_params.get('_filter')
+        if keyword == 'budget':
+            keyword = keyword.lower()
 
+            keyword = self.request.query_params.get('_gt')
+            if keyword is not None:
+                keyword = keyword.lower()
+                query_set = query_set.filter(budget__gte=keyword)
 
-
-# class IsOwnerFilterBackend(filters.BaseFilterBackend):
-#     """
-#     Filter that only allows users to see their own objects.
-#     """
-#     def filter_queryset(self, request, queryset, view):
-#         return queryset.filter(owner=request.user)
+        return query_set
