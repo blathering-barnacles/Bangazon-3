@@ -27,8 +27,11 @@ class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
 
-    # filter_backends = (filters.SearchFilter,)
-    # search_fields = ('paymentType_id')
+    '''[summary]
+    
+    Returns:
+        [type] -- [description]
+    '''
 
     def get_queryset(self):
         query_set = Order.objects.all()

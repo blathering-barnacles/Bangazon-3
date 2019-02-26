@@ -59,10 +59,9 @@ class CustomerOrderSerializer(serializers.HyperlinkedModelSerializer):
 
   class Meta:
     model = Customer
-    # print("MODELS: ", mode.pk)
 
-    # fields = ('id', 'firstName', 'lastName', 'email', 'address', 'phone', 'deletedOn', 'url')
-    fields = '__all__'
+    fields = ('firstName', 'lastName', 'email', 'address', 'phone', 'deletedOn', 'url')
+
 
 class ProductTypeSerializer(serializers.HyperlinkedModelSerializer):
 
@@ -86,21 +85,16 @@ class PaymentTypeSerializer(serializers.HyperlinkedModelSerializer):
         fields = '__all__'
 
 class OrderSerializer(serializers.HyperlinkedModelSerializer):
-    # product = ProductSerializer(many=True, source='product.all', read_only=True)
+    product = ProductSerializer(many=True, source='product.all', read_only=True)
     
     def __init__(self,*args,**kwargs):
         super(OrderSerializer, self).__init__(*args, **kwargs)
         request = kwargs['context']['request']
-        # if request.query_params.get("_include") == "customers":
-        #     self.fields["customerbuyer"] = CustomerSerializer(many= True, read_only = True)
         include = request.query_params.get("_include", None)
-       
         if include:
             if "customers" in include:
-                self.fields["buyer"] = CustomerSerializer(read_only=True,)
+                self.fields["buyer"] = CustomerOrderSerializer(read_only=True,)
                 print("look here", request)
-            # if "payments" in include:
-            #     self.fields["used_paymenttypes"] = PaymentTypeSerializer(read_only=True, many=True)
 
     class Meta:
         model = Order
