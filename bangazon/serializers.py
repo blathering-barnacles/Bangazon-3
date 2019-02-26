@@ -47,6 +47,15 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
     fields = ('title', 'location', 'description', 'price', 'quantity', 'dateAdded', 'deletedOn', 'productType', 'seller', 'url')
 
 class CustomerSerializer(serializers.HyperlinkedModelSerializer):
+    product = ProductSerializer(many=True, read_only=True)
+
+    class Meta:
+      model = Customer
+
+      fields = ('firstName', 'lastName', 'email', 'address', 'phone', 'product', 'deletedOn', 'url')
+
+
+class CustomerOrderSerializer(serializers.HyperlinkedModelSerializer):
 
   class Meta:
     model = Customer
