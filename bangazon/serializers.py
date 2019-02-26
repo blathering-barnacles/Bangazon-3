@@ -20,11 +20,11 @@ class DepartmentSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class DepartmentSerializer(serializers.HyperlinkedModelSerializer):
-    def __init__(self, *woop, **taco):
-        super(DepartmentSerializer, self).__init__(*woop, **taco)
-        print("ARGS: ", woop)
-        print("KWARGS", taco)
-        request = taco['context']['request']
+    def __init__(self, *args, **kwargs):
+        super(DepartmentSerializer, self).__init__(*args, **kwargs)
+        print("ARGS: ", args)
+        print("KWARGS", kwargs)
+        request = kwargs['context']['request']
         print("REQUEST: ", request.query_params)
         include = request.query_params.get('_include')
         print("INCLUDE: ", include)
@@ -32,15 +32,15 @@ class DepartmentSerializer(serializers.HyperlinkedModelSerializer):
         if include:
             if 'employees' in include:
                 self.fields['employees'] = EmployeeSerializer(many=True, source='employees.all', read_only=True)
-    # assignees = EmployeeSerializer(many=True, source='employees.all', read_only=True)
 
+    class Meta:
+        model = Department
+        fields = ('url', 'name', 'budget')
 
 class ComputerEmployeeSerializer(serializers.HyperlinkedModelSerializer):
-
     class Meta:
         model = ComputerEmployee
         fields = ('__all__')
-
 
 class ComputerSerializer(serializers.HyperlinkedModelSerializer):
 
