@@ -7,6 +7,7 @@ class Customer(models.Model):
     email = models.CharField(max_length=50)
     address = models.CharField(max_length=50)
     phone = PhoneNumberField(null=False, blank=False, unique=True)
+    active = models.BooleanField(default=False)
     deletedOn = models.DateField(default=None, null=True)
 
     def __str__(self):
