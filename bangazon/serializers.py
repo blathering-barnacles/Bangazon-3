@@ -47,12 +47,28 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
     fields = ('title', 'location', 'description', 'price', 'quantity', 'dateAdded', 'deletedOn', 'productType', 'seller', 'url')
 
 class CustomerSerializer(serializers.HyperlinkedModelSerializer):
-    product = ProductSerializer(many=True, read_only=True)
+    def __init__(self, *args, **taco):
+        super(CustomerSerializer, self).__init__(*args, **taco)
+        print("ARGS: ", args)
+        # print("KWARGS", kwargs)
+        request = taco['context']['request']
+        print("REQUEST: ", request.query_params)
+        include = request.query_params.get('_include')
+        cat = request.query_params.get('cat')
+        print("CAT: ", cat)
+        print("INCLUDE: ", include)
+
+        if include:
+            if 'products' in include:
+                self.fields['products'] = ProductSerializer(many=True, source='product.all', read_only=True)
+        if cat:
+          if 'woopy' in cat:
+            print("meow!")
 
     class Meta:
       model = Customer
 
-      fields = ('firstName', 'lastName', 'email', 'address', 'phone', 'product', 'deletedOn', 'url')
+      fields = ('firstName', 'lastName', 'email', 'address', 'phone', 'deletedOn', 'url')
 
 
 class CustomerOrderSerializer(serializers.HyperlinkedModelSerializer):
