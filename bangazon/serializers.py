@@ -50,8 +50,10 @@ class CustomerSerializer(serializers.HyperlinkedModelSerializer):
 
   class Meta:
     model = Customer
+    # print("MODELS: ", mode.pk)
 
-    fields = ('firstName', 'lastName', 'email', 'address', 'phone', 'deletedOn', 'url')
+    # fields = ('id', 'firstName', 'lastName', 'email', 'address', 'phone', 'deletedOn', 'url')
+    fields = '__all__'
 
 class ProductTypeSerializer(serializers.HyperlinkedModelSerializer):
 
