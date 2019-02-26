@@ -18,12 +18,6 @@ class DepartmentSerializer(serializers.HyperlinkedModelSerializer):
         model = Department
         fields = ('id', 'url', 'name', 'budget', 'deletedOn')
 
-class ComputerEmployeeSerializer(serializers.HyperlinkedModelSerializer):
-
-    class Meta:
-        model = ComputerEmployee
-        fields = ('__all__')
-
 
 class ComputerSerializer(serializers.HyperlinkedModelSerializer):
 
