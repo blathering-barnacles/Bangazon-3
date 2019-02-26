@@ -87,7 +87,12 @@ class PaymentTypeSerializer(serializers.HyperlinkedModelSerializer):
 class OrderSerializer(serializers.HyperlinkedModelSerializer):
     product = ProductSerializer(many=True, source='product.all', read_only=True)
     
+
     def __init__(self,*args,**kwargs):
+    '''
+    This function allows users to add a '?_include=customers' to the end of the URL in the browseable API and the buyer details will then display.
+    '''
+
         super(OrderSerializer, self).__init__(*args, **kwargs)
         request = kwargs['context']['request']
         include = request.query_params.get("_include", None)
