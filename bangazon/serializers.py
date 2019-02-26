@@ -85,7 +85,6 @@ class PaymentTypeSerializer(serializers.HyperlinkedModelSerializer):
         model = PaymentType
         fields = '__all__'
 
-<<<<<<< HEAD
 class OrderSerializer(serializers.HyperlinkedModelSerializer):
     # product = ProductSerializer(many=True, source='product.all', read_only=True)
     
@@ -106,6 +105,4 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Order
         fields = ('id', 'paymentType', 'product', 'deletedOn', 'url', 'buyer')
-=======
 
->>>>>>> master
