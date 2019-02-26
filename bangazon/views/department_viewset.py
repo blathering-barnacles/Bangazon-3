@@ -21,9 +21,12 @@ class DepartmentViewSet(viewsets.ModelViewSet):
     # def get_queryset(self):
     #     query_set = Employee.objects.all()
     #     departments = Department.objects.all()
-    #     keyword = self.request.query_params.get('_include', None)
-    #     # if keyword == 'employees':
-    # return queryset
+    #     keyword1 = self.request.query_params.get('_include', None)
+    #     # if keyword1 == 'employees':
+    #     keyword2 = self.request.query_params.get('_filter', None)
+    #     if keyword2 == 'budget':
+    #         query_set = Department.objects.filter(budget__gte=300000)
+    #     return queryset
 
     # def get_queryset(self):
     #     query_set = Order.objects.all()

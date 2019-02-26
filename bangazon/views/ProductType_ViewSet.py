@@ -3,6 +3,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
 from bangazon.models import ProductType
+from bangazon.models import TrainingProgram
 from bangazon.serializers import ProductTypeSerializer
 from django.shortcuts import render
 from rest_framework import filters
@@ -22,3 +23,4 @@ class ProductTypeViewSet(viewsets.ModelViewSet):
 
     filter_backends = (filters.SearchFilter,)
     search_fields = ('name', 'deletedOn')
+

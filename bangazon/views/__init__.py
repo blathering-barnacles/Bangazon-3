@@ -7,6 +7,7 @@ from .ProductType_ViewSet import ProductTypeViewSet
 from .computer_viewset import ComputerViewSet
 from .employee_viewset import EmployeeViewSet
 from .department_viewset import DepartmentViewSet
+from .TrainingProgram_ViewSet import TrainingProgramViewSet
 from .paymenttype_viewset import PaymentTypeViewSet
 from .productorder_viewset import ProductOrderViewSet
 
