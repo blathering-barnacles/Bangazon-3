@@ -113,9 +113,9 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
     
 
     def __init__(self,*args,**kwargs):
-    '''
-    This function allows users to add a '?_include=customers' to the end of the URL in the browseable API and the buyer details will then display.
-    '''
+        '''
+        This function allows users to add a '?_include=customers' to the end of the URL in the browseable API and the buyer details will then display.
+        '''
 
         super(OrderSerializer, self).__init__(*args, **kwargs)
         request = kwargs['context']['request']
