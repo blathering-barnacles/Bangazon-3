@@ -44,7 +44,7 @@ class PaymentType(models.Model):
         return f'{self.name}'
 
 class Order(models.Model):
-    buyer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    buyer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name="buyer")
     paymentType = models.ForeignKey(PaymentType, null=True, on_delete=models.CASCADE)
     product = models.ManyToManyField(Product, blank=True, through='ProductOrder')
     deletedOn = models.DateField(default=None, null=True)
