@@ -19,6 +19,32 @@ class DepartmentSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id', 'url', 'name', 'budget', 'deletedOn')
 
 
+<<<<<<< HEAD
+=======
+class DepartmentSerializer(serializers.HyperlinkedModelSerializer):
+    def __init__(self, *args, **kwargs):
+        super(DepartmentSerializer, self).__init__(*args, **kwargs)
+        print("ARGS: ", args)
+        print("KWARGS", kwargs)
+        request = kwargs['context']['request']
+        print("REQUEST: ", request.query_params)
+        include = request.query_params.get('_include')
+        print("INCLUDE: ", include)
+
+        if include:
+            if 'employees' in include:
+                self.fields['employees'] = EmployeeSerializer(many=True, source='employees.all', read_only=True)
+
+    class Meta:
+        model = Department
+        fields = ('url', 'name', 'budget')
+
+class ComputerEmployeeSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = ComputerEmployee
+        fields = ('__all__')
+
+>>>>>>> master
 class ComputerSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
@@ -32,6 +58,12 @@ class EmployeeSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Employee
         fields = ('id', 'url', 'firstName', 'lastName', 'department', 'startDate', 'isSupervisor', 'deletedOn', 'computer')
+
+class EmployeeSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = Employee
+        fields = ('id', 'firstName', 'lastName', 'startDate', 'isSupervisor', 'deletedOn', 'url')
 
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
 
@@ -53,10 +85,9 @@ class CustomerOrderSerializer(serializers.HyperlinkedModelSerializer):
 
   class Meta:
     model = Customer
-    # print("MODELS: ", mode.pk)
 
-    # fields = ('id', 'firstName', 'lastName', 'email', 'address', 'phone', 'deletedOn', 'url')
-    fields = '__all__'
+    fields = ('firstName', 'lastName', 'email', 'address', 'phone', 'deletedOn', 'url')
+
 
 class ProductTypeSerializer(serializers.HyperlinkedModelSerializer):
 
@@ -75,8 +106,36 @@ class TrainingProgramSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id', 'name', 'startDate', 'endDate', 'maxAttendees', 'deletedOn', 'url', 'attendees' )
 
 class PaymentTypeSerializer(serializers.HyperlinkedModelSerializer):
+
     class Meta:
         model = PaymentType
         fields = '__all__'
 
+class OrderSerializer(serializers.HyperlinkedModelSerializer):
+    product = ProductSerializer(many=True, source='product.all', read_only=True)
+    
+
+    def __init__(self,*args,**kwargs):
+        '''
+        This function allows users to add a '?_include=customers' to the end of the URL in the browseable API and the buyer details will then display.
+        '''
+
+        super(OrderSerializer, self).__init__(*args, **kwargs)
+        request = kwargs['context']['request']
+        include = request.query_params.get("_include", None)
+        if include:
+            if "customers" in include:
+                self.fields["buyer"] = CustomerOrderSerializer(read_only=True,)
+                print("look here", request)
+
+    class Meta:
+        model = Order
+        fields = ('id', 'paymentType', 'product', 'deletedOn', 'url', 'buyer')
+class ProductOrderSerializer(serializers.HyperlinkedModelSerializer):
+    product = ProductSerializer(read_only=True)
+
+
+    class Meta:
+        model = ProductOrder
+        fields = ('order_id', 'product', 'deletedOn')
 
