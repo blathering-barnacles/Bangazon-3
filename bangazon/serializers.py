@@ -50,12 +50,13 @@ class EmployeeSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Employee
         fields = ('id', 'url', 'firstName', 'lastName', 'department', 'startDate', 'isSupervisor', 'deletedOn', 'computer')
+        fields = ('__all__')
 
-class EmployeeSerializer(serializers.HyperlinkedModelSerializer):
+# class EmployeeSerializer(serializers.HyperlinkedModelSerializer):
 
-    class Meta:
-        model = Employee
-        fields = ('id', 'firstName', 'lastName', 'startDate', 'isSupervisor', 'deletedOn', 'url')
+#     class Meta:
+#         model = Employee
+#         fields = ('id', 'firstName', 'lastName', 'startDate', 'isSupervisor', 'deletedOn', 'url')
 
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
 
