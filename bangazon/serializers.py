@@ -37,11 +37,6 @@ class DepartmentSerializer(serializers.HyperlinkedModelSerializer):
         model = Department
         fields = ('url', 'name', 'budget')
 
-class ComputerEmployeeSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = ComputerEmployee
-        fields = ('__all__')
-
 class ComputerSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
@@ -54,13 +49,14 @@ class EmployeeSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Employee
-        fields = ('id', 'firstName', 'lastName', 'url', 'department', 'computer')
+        fields = ('id', 'url', 'firstName', 'lastName', 'department', 'startDate', 'isSupervisor', 'deletedOn', 'computer')
+        fields = ('__all__')
 
-class EmployeeSerializer(serializers.HyperlinkedModelSerializer):
+# class EmployeeSerializer(serializers.HyperlinkedModelSerializer):
 
-    class Meta:
-        model = Employee
-        fields = ('id', 'firstName', 'lastName', 'startDate', 'isSupervisor', 'deletedOn', 'url')
+#     class Meta:
+#         model = Employee
+#         fields = ('id', 'firstName', 'lastName', 'startDate', 'isSupervisor', 'deletedOn', 'url')
 
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
 
@@ -110,7 +106,7 @@ class PaymentTypeSerializer(serializers.HyperlinkedModelSerializer):
 
 class OrderSerializer(serializers.HyperlinkedModelSerializer):
     product = ProductSerializer(many=True, source='product.all', read_only=True)
-    
+
 
     def __init__(self,*args,**kwargs):
         '''
