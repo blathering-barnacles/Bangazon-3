@@ -66,12 +66,33 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
     fields = ('title', 'location', 'description', 'price', 'quantity', 'dateAdded', 'deletedOn', 'productType', 'seller', 'url')
 
 class CustomerSerializer(serializers.HyperlinkedModelSerializer):
-    product = ProductSerializer(many=True, read_only=True)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        print("ARGS: ", args)
+        # print("KWARGS", kwargs)
+        request = kwargs['context']['request']
+        print("REQUEST: ", request.query_params)
+        include = request.query_params.get('_include')
+        payment = request.query_params.get('_include')
+        cat = request.query_params.get('cat')
+        print("CAT: ", cat)
+        print("INCLUDE: ", include)
+
+        if include:
+            if 'products' in include:
+                self.fields['products'] = ProductSerializer(many=True, source='product.all', read_only=True)
+
+        if payment:
+          if 'paymentType' in payment:
+            self.fields['Payment Type'] = PaymentTypeSerializer(many=True, source='paymentType.all', read_only=True)
+        if cat:
+          if 'woopy' in cat:
+            print("meow!")
 
     class Meta:
       model = Customer
 
-      fields = ('firstName', 'lastName', 'email', 'address', 'phone', 'product', 'deletedOn', 'url')
+      fields = ('firstName', 'lastName', 'email', 'address', 'phone', 'deletedOn', 'url')
 
 
 class CustomerOrderSerializer(serializers.HyperlinkedModelSerializer):
@@ -91,12 +112,12 @@ class ProductTypeSerializer(serializers.HyperlinkedModelSerializer):
 
 class TrainingProgramSerializer(serializers.HyperlinkedModelSerializer):
     # first_name = serializers.ReadOnlyField(source='employee.firstName')
-    attendees = EmployeeSerializer(many=True, source='employee.all', read_only=True)
+    monkey = EmployeeSerializer(many=True, source='employee.all', read_only=True)
 
 
     class Meta:
         model = TrainingProgram
-        fields = ('id', 'name', 'startDate', 'endDate', 'maxAttendees', 'deletedOn', 'url', 'attendees' )
+        fields = ('id', 'name', 'startDate', 'endDate', 'maxAttendees', 'deletedOn', 'url', 'monkey' )
 
 class PaymentTypeSerializer(serializers.HyperlinkedModelSerializer):
 

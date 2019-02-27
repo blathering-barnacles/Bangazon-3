@@ -21,11 +21,20 @@ class CustomerViewSet(viewsets.ModelViewSet):
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
 
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('firstName','lastName')
+
     def get_queryset(self):
+        query_set = self.queryset
         keyword = self.request.query_params.get('active', None)
+        key = self.request.query_params.get('q')
         customer_query_set = Customer.objects.all()
         print("CUSTOMER QUERY: ", customer_query_set.values())
         order_query_set = Order.objects.all()
+
+        if key is not None:
+          query_set = query_set.filter(Q(firstName__icontains=key) | Q(lastName__icontains=key))
+          return query_set
 
         if keyword == "false":
             notCustomer = Customer.objects.filter(active=False)
@@ -56,3 +65,5 @@ class CustomerViewSet(viewsets.ModelViewSet):
 
 
         return customer_query_set
+
+

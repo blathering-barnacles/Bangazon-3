@@ -37,7 +37,7 @@ class Product(models.Model):
 class PaymentType(models.Model):
     name = models.CharField(max_length=30)
     cardNum = models.IntegerField()
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True, related_name='paymentType')
     deletedOn = models.DateField(default=None, null=True)
 
     def __str__(self):
